@@ -1,0 +1,79 @@
+version 0.6.2
+=============
+(2007-02-18)
+* remove_before and remove_after, used by some INDEX_HELPERS is more elegant now (by Stian Haklev)
+* Changed to buffered file upload (this may prevent any memory leaks)
+* Reading files is done in blocks now (this ensures they are closed again properly)
+* Strip HTML tags for HTML files before indexing (by Stian Haklev)
+* Strip text_in_file before indexing (Stian Haklev)
+* rubyzip is added to vendor/plugins, so sxw and odt files can be indexed (by Stian Haklev)
+* Fixed validate_filename (I guess Rails 1.2 broke it)
+* Search results table has a fixed width now
+
+version 0.6.1
+=============
+(2007-02-11)
+* Fixed bug: close file after reading contents for indexing
+* In the search results view the preview link will only be shown if the file has been indexed
+
+version 0.6
+===========
+(2007-02-10)
+* Rails 1.2 ready
+* Full text search with Ferret (implemented by Stian Haklev)
+* Redirect to the originally requested URL after logging in
+* Changed the license to MIT
+* Added copyright notice in the views
+* Changed the status on Rubyforge from Alpha to Beta
+
+version 0.5
+===========
+(2006-12-04)
+* Refactored the authentication_controller
+* Put before_filter :authorize in ApplicationController (and using skip_before_filter in other controllers if necessary)
+* Using 'unless' instead of 'if not'
+* Using find_by() instead of find(:first)
+* Upload progress (yay!)
+
+version 0.4
+===========
+(2006-10-15)
+* Html_escaped input from outside the application
+* Put the path() method in the application helper instead of in the Folder model, so h() can be used
+* New layout
+* Choose your own username for the admin account
+* Improved security by adding password salt
+* RSS feeds for folders
+
+version 0.3
+===========
+(2006-06-04)
+* The uploaded file's temp name is Time.now, instead of 'newfile', this way it's possible to upload multiple files at the same time 
+* GroupPermissions is a better name than GroupFolders
+* Checks the child folders for delete permissions
+* A lot of refactoring...
+* DB schema stuff is handled by Migrations now
+* Choose whether a new group gets ALL or NO permissions on existing folders
+* The admin password is not mailed anymore, the admin can decide on a password when the account is created
+* Error handling for e-mailing
+
+version 0.2
+===========
+(2006-04-29)
+* Changed name of the password field in the login screen. Prevents Firefox from entering a saved password when editing a user.
+* Root folder is a folder in the database (instead of some kind of 'virtual' folder)
+* Folder acts_as_tree
+* Folders with content CAN be deleted now
+* Search for files/folders
+* It's called Boxroom now
+
+version 0.1.1
+=============
+* There IS a rakefile now
+* Textual changes
+* Got rid of "ActionController::Base.enable_upload_progress;" so it works with rails 1.1 too
+* Path to uploads via #{RAILS_ROOT}
+* ["is_the_administrators_group = ?", true] instead of "is_the_administrators_group = true"; this fixes an issue with MySQL
+* "#! /usr/bin/env ruby" instead of "#!/usr/local/bin/ruby" in the dispatch files
+* If a user edited his/her own settings: show a confirmation in the edit screen; else: redirect to the list of users
+* New users get an e-mail informing them about their account

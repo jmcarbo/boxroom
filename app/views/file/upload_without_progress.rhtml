@@ -1,0 +1,11 @@
+<p class="title">Upload file</p>
+
+<% form_tag({:action => 'do_the_upload', :folder_id => controller.folder_id}, {:multipart => true}) do %>
+    <%= myfile_to_file(error_messages_for('myfile')) %>
+    <label for="myfile_name">Select file to upload:</label><br/>
+    <%= file_field 'myfile', 'myfile' %><br />
+    <br />
+    <%= submit_tag 'Upload' %>
+<% end %>
+
+<%= link_to 'Back', :controller => 'folder', :action => 'list', :id => controller.folder_id %>

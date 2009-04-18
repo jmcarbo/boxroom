@@ -1,0 +1,7 @@
+<% @clipboard.folders.each do |folder| %>
+    <%= h(folder.name) %><br />
+<% end %>
+<br />
+<% @clipboard.files.each do |file| %>
+    <%= h(file.filename) %><br />
+<% end %>

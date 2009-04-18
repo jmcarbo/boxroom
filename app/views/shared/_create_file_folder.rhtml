@@ -1,0 +1,4 @@
+<% unless controller.folder_id.blank? or not @logged_in_user.can_create(controller.folder_id) %>
+    <%= link_to 'Create folder', { :controller => 'folder', :action => 'new', :id => controller.folder_id } %><br />
+    <%= link_to 'Upload file', { :controller => 'file', :action => 'upload', :id => controller.folder_id } %>
+<% end %>

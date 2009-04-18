@@ -1,0 +1,41 @@
+Thanks for your interest in Boxroom.
+
+Boxroom is a web application for sharing and managing files online. The goal is to let a group of people share their files with each other. To make this possible the application lets users create folders and up/download files in a web browser. Furthermore for administrators it will be possible to create users, user groups and the CRU/D rights these groups will have on folders.
+
+Boxroom is developed using the Ruby on Rails web development framework.
+Check out http://www.rubyonrails.org for more info. As Ruby on Rails forces you to use the Model-View-Controller pattern, Boxroom consists of a number of Models, Views and Controllers. The Models, Controllers and the Helpers for the Views are listed below. They are intended to help you find your way around this Rails Application Documentation.
+
+Models:
+    Clipboard
+    Folder
+    Group
+    GroupPermission
+    Myfile
+    PasswordMailer
+    Usage
+    User
+
+Controllers:
+    ApplicationController
+    AuthenticationController
+    ClipboardController
+    FileController
+    FolderController
+    GroupController
+    SearchController
+    UserController
+
+Helpers:
+    ApplicationHelper
+    AuthenticationHelper
+    ClipboardHelper
+    FileHelper
+    FolderHelper
+    GroupHelper
+    SearchHelper
+    UserHelper
+
+
+I hope Boxroom will be useful for you.
+
+Mischa Berger <boxroomcomments at gmail dot com>

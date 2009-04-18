@@ -1,0 +1,59 @@
+<html>
+<head>
+    <title>Boxroom</title>
+    <%= stylesheet_link_tag 'boxroom' %>
+    <%= javascript_include_tag 'application' %>
+    <script type="text/javascript">
+        if(IE)
+        {
+            window.onload = ResizeContentDiv;
+            window.onresize = ResizeContentDiv;
+        }
+    </script>
+</head>
+<body>
+
+    <div id="top">
+        <div class="header">
+            <div class="userSettings">
+                <%= render :partial=>'shared/logged_in_user_menu' %>
+            </div>
+
+            <div class="search">
+                <%= render :partial=>'shared/search_form' %>
+            </div>
+        </div>
+
+        <div class="topNavigation">
+            <div class="links">
+                <%= render :partial=>'shared/go_to_menu' %>
+            </div>
+        </div>
+    </div>
+
+    <div id="middle">
+        <div class="actionLinks">
+            <% if @logged_in_user.is_admin? %>
+            <%= link_to 'Create group', { :action => 'new' } %>
+            <% end %>
+        </div>
+
+        <div class="content">
+            <table cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <%= yield %>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="bottom">
+        <div class="footer">
+            &#0169; <a href="http://boxroom.rubyforge.org">Mischa Berger</a>, <%= Time.now.year %>
+        </div>
+    </div>
+
+</body>
+</html>

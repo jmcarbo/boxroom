@@ -1,0 +1,45 @@
+<p class="title">Search results</p>
+<% unless @result.blank? %>
+    <i>Your query "<%= @search_query %>" produced <%= @result.size %> result(s)</i><br>
+    <br>
+    
+    <table class="grid" width="750">
+    
+    <% @result.each do |result| %>
+        <% odd_or_even = cycle('even', 'odd') %>
+        <% if result.class == Folder %>
+            <tr class="<%= odd_or_even %>">
+                <td width="16"><%= image_tag('folder.png') %></td>
+                <td colspan="2">
+                    <%= link_to result.name, :controller => 'folder', :action => 'list', :id => result.id %>
+                    <% unless result.is_root %>
+                        in <%= path(result.parent, true) %>
+                    <% end %>
+                </td>
+            </tr>
+        <% elsif result.class == Myfile %>
+            <tr class="<%= odd_or_even %>">
+                <td width="16"><%= image_tag('file.png') %></td>
+                <td><%= h(result.filename) %> (<%= result.filesize %> KB) in <%= path(result.folder, true) %></td>
+                <td align="right">
+                    <%= link_to 'Download', :controller => 'file', :action => 'download', :id => result.id %>
+            <% if result.indexed %>
+                    or <%= link_to 'Preview', :controller => 'file', :action => 'preview', :id => result.id, :search => @search_query %>
+            <% end %>
+                    &nbsp;
+                </td>
+            </tr>
+            <% highlighted_text = result.highlight(@search_query, { :field => :text, :pre_tag => '[h]', :post_tag => '[/h]' }) %>
+            <% unless highlighted_text.blank? %>
+            <tr class="<%= odd_or_even %>">
+                <td colspan="3" class="smallResult"><%= h(highlighted_text).gsub('[h]', '<b>').gsub('[/h]', '</b>') %></td>
+            </tr>
+            <% end %>
+        <% end %>
+    <% end %>
+    
+    </table>
+
+<% else %>
+    <i>Sorry, no results for your query "<%= @search_query %>"</i>
+<% end %>

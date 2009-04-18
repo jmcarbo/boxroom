@@ -1,0 +1,8 @@
+<p class="title">Rename group</p>
+
+<% form_tag :action => 'update', :id => @group do %>
+    <%= render :partial=>'form' %>
+    <%= submit_tag 'Rename' %>
+<% end %>
+
+<%= link_to 'Back', :action => 'list' %>

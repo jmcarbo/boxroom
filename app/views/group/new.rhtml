@@ -1,0 +1,11 @@
+<p class="title">New group</p>
+
+<% form_tag :action => 'create' do %>
+    <%= render :partial=>'form' %>
+    <%= check_box('permission_to_everything', 'checked', {}, 'yes', 'no') %> Give this group ALL permissions in existing folders<br />
+    <font style="font-size:10px;">(By default new groups get NO permissions in existing folders.)</font><br />
+    <br /> 
+    <%= submit_tag 'Create' %>
+<% end %>
+
+<%= link_to 'Back', :action => 'list' %>

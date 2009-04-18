@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>Boxroom</title>
+    <%= stylesheet_link_tag 'boxroom' %>
+    <%= javascript_include_tag 'application' %>
+    <script type="text/javascript">
+        if(IE)
+        {
+            window.onload = ResizeContentDiv;
+            window.onresize = ResizeContentDiv;
+        }
+    </script>
+</head>
+<body>
+
+    <div id="top">
+        <div class="header">
+            <div class="userSettings">
+            </div>
+
+            <div class="search">
+            </div>
+        </div>
+
+        <div class="topNavigation">
+            <div class="links">
+            </div>
+        </div>
+    </div>
+
+    <div id="middle">
+        <div class="actionLinks">
+        </div>
+
+        <div class="content">
+            <table cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <%= yield %>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="bottom">
+        <div class="footer">
+            &#0169; <a href="http://boxroom.rubyforge.org">Mischa Berger</a>, <%= Time.now.year %>
+        </div>
+    </div>
+
+</body>
+</html>

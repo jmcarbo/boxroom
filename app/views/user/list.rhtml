@@ -1,0 +1,33 @@
+<p class="title">Users</p>
+
+<% if flash[:user_error] %>
+<div id="error"><%= flash[:user_error] %></div>
+<% end %>
+
+<% if flash[:user_confirmation] %>
+<div id="confirmation"><%= flash[:user_confirmation] %></div>
+<% end %>
+
+<table>
+    <tr>
+        <th></th>
+           <th width="180">Name</th>
+        <th width="356">E-mail address</th>
+        <th></th>
+        <th></th>
+      </tr>
+  
+<% @users.each do |user| %>
+    <tr class="<%= cycle('even', 'odd') %>">
+        <td><%= image_tag('user.png') %></td>
+        <td><%= h(user.name) %></td>
+        <td><%= h(user.email) %></td>
+        <td><%= link_to image_tag('edit.png'), { :action => 'edit', :id => user }, { :title => "Edit this user's settings" } %></td>
+    <% if user.is_the_administrator? %>
+        <td></td>
+    <% else %>
+        <td><%= link_to image_tag('delete.png'), { :action => 'destroy', :id => user }, { :title => 'Delete this user', :confirm => 'Are you sure?' } %></td>
+    <% end %>
+    </tr>
+<% end %>
+</table>

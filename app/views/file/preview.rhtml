@@ -1,0 +1,18 @@
+<p class="title">Preview</p>
+
+<%= link_to h(@myfile.filename), :controller => 'file', :action => 'download', :id => @myfile.id %> in <%= path(@myfile.folder, true) %>
+
+<% unless params[:search].blank? %>
+with search query <b><%= params[:search] %></b> highlighted.
+<% end %>
+
+<br>
+<br>
+<a href="javascript:history.back(-1);">Back</a><br>
+<br>
+
+<div class="preview">
+    <%= h(@text).gsub("\r\n","<br>").gsub("\n","<br>").gsub('[h]', '<span class="highlight">').gsub('[/h]', '</span>') %>
+</div>
+<br>
+<a href="javascript:history.back(-1);">Back</a>

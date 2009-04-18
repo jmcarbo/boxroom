@@ -1,0 +1,47 @@
+<%= name_to_username(error_messages_for('user')) %>
+
+<!--[form:user]-->
+
+<label for="user_name">Username</label><br/>
+<%= text_field 'user', 'name', :style => 'width:220px;' %><br />
+<br />
+
+<label for="user_email">E-mail address</label><br/>
+<%= text_field 'user', 'email', :style => 'width:220px;' %><br />
+<br />
+
+<label for="user_password"><% unless controller.action_name == 'new' %>New p<% else %>P<% end %>assword</label><br/>
+<%= password_field 'user', 'password', :style => 'width:220px;' %><br />
+<br />
+
+<label for="user_password_confirmation">Confirm <% unless controller.action_name == 'new' %>new<% end %> password</label><br/>
+<%= password_field 'user', 'password_confirmation', :style => 'width:220px;' %><br />
+<br />
+
+<% if @logged_in_user.is_admin? %>
+Member of these groups<br>
+<table>
+    <tr>
+    <% i = 0 %>
+    <% for group in Group.find(:all) %>
+        <% if @user.groups.find_by_id(group.id) %>
+            <% checked = 'checked' %>
+        <% else %>
+            <% checked = '' %>
+        <% end %>
+
+        <% if @user and @user.is_the_administrator? and group.is_the_administrators_group? %>
+        <td style="color:#818181;"><%= check_box('belongs_to_group', group.id, {:checked => checked, :disabled => true}, 'yes', 'no') %> <%= h(group.name) %></td>
+        <% else %>
+        <td><%= check_box('belongs_to_group', group.id, {:checked => checked}, 'yes', 'no') %> <%= h(group.name) %></td>
+        <% end %>
+
+        <% i += 1 %>
+        <% if i % 3 == 0 %></tr><tr><% end %>
+    <% end %>
+    </tr>
+</table>
+<br />
+<% end %>
+
+<!--[eoform:user]-->

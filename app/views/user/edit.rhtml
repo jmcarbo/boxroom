@@ -1,0 +1,14 @@
+<p class="title">Edit user</p>
+
+<% if flash[:user_confirmation] %>
+<div id="confirmation"><%= flash[:user_confirmation] %></div>
+<% end %>
+
+<% form_tag :action => 'update', :id => @user do %>
+    <%= render :partial=>'form' %>
+    <%= submit_tag 'Save' %>
+<% end %>
+
+<% if @user != @logged_in_user %>
+<%= link_to 'Back', :action => 'list' %>
+<% end %>

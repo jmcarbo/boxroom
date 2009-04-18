@@ -1,0 +1,28 @@
+<p class="title">Create admin</p>
+
+<%= name_to_username(error_messages_for('user')) %>
+
+<p>
+    Boxroom does not have an administrator yet.<br/>
+    <br/>
+    Create it here:
+</p>
+<% form_tag do %>
+    <label for="user_name">Username</label><br />
+    <%= text_field 'user', 'name' %><br />
+    <br />
+
+    <label for="user_email">E-mail address</label><br />
+    <%= text_field 'user', 'email' %><br />
+    <br />
+
+    <label for="user_password">Password</label><br />
+    <%= password_field 'user', 'password' %><br />
+    <br />
+
+    <label for="user_password_confirmation">Confirm password</label><br />
+    <%= password_field 'user', 'password_confirmation' %><br />
+    <br />
+
+    <%= submit_tag 'Create admin account' %>
+<% end %>

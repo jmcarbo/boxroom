@@ -1,0 +1,27 @@
+<p class="title">Groups</p>
+
+<% if flash[:group_error] %>
+<div id="error"><%= flash[:group_error] %></div>
+<% end %>
+
+<table>
+    <tr>
+        <th></th>
+        <th width="542">Name</th>
+        <th></th>
+        <th></th>
+    </tr>
+<% @groups.each do |group| %>
+    <tr class="<%= cycle('even', 'odd') %>">
+        <td><%= image_tag('group.png') %></td>
+        <td><%= h(group.name) %></td>
+    <% unless group.is_the_administrators_group? %>
+        <td><%= link_to image_tag('edit.png'), { :action => 'rename', :id => group }, { :title => 'Rename this group' } %></td>
+        <td><%= link_to image_tag('delete.png'), { :action => 'destroy', :id => group }, { :title => 'Delete this group', :confirm => 'Are you sure?' } %></td>
+    <% else %>
+        <td></td>
+        <td></td>
+    <% end %>
+    </tr>
+<% end %>
+</table>
